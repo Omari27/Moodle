@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Validation</title>
+    <link rel="stylesheet" href="admin-reg-form.css">
+</head>
+<body>
+    <h1>Registration-Form-admin</h1>
+    <form id="registrationForm" novalidate>
+        <div class="form-group">
+            <label for="name">Full Name*</label>
+            <input type="text" id="name" name="name" required minlength="3" maxlength="50">
+            <div class="error" id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError"></div>
+        </div>
+            <div class="form-group">
+            <label for="Phone number">Phone number*</label>
+            <input type="phone" id="phone" name="phone" required>
+            <div class="error" id="phoneError"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password*</label>
+            <input type="password" id="password" name="password" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d).+$">
+            <div class="error" id="passwordError"></div>
+            <small>Must be at least 8 characters with at least one letter and one number</small>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password*</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <div class="error" id="confirmPasswordError"></div>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender*</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select a gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <div class="error" id="genderError"></div>
+        </div>
+         <button type="reset" style="background-color: rgb(72, 3, 233);">Reset</button>
+        <button type="submit">Submit</button>
+         <p><i>Already have an Account?</i><a href="Admin-login.html">Login here as Admin</a></p>
+    </form>
+    <script src="admin-reg-form.js">
+       
+    </script>
+</body>
+</html>

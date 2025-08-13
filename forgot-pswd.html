@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="forgot-pswd.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Create New Password</h2>
+        <form id="resetForm" method="POST" action="/reset-password">
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <div class="error" id="error"></div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+     <script src="forgot-pswd.js">
+        
+    </script>
+</body>
+</html>
