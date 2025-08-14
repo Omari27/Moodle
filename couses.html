@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+}
+.header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2563eb;
+    color: white;
+    padding: 15px 20px;
+    
+}
+.header h2 {
+    margin: 0;
+}
+.create-btn {
+    background: #16a34a;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 90%;
+}
+.course-list {
+    padding: 20px;
+}
+.course {
+    background: white;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.course-header {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+}
+.status {
+    background: #16a34a;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+.details, .progress-info {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+}
+.progress-info {
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
+}
+    /* Navigation bar */
+    .nav-bar {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        padding: 15px 30px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        padding-left: 30%;
+    }
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s;
+        padding-bottom: 5px;
+        border-bottom: 3px solid transparent;
+       
+    }
+    .nav-link:hover {
+        color: #010616;
+        text-decoration: underline;
+    }
+
+/*create course*/
+#createCourseForm {
+      display: none;
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+.btn {
+      padding: 8px 14px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+.btn:hover {
+      background-color: #2980b9;
+    }
+.your-course{
+margin-right: 5%;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+    <!-- Navigation Links (top) -->
+<div class="nav-bar">
+    <a href="Main dashboard.html" class="nav-link"> Home</a>
+    <a href="couses.html" class="nav-link"> Courses</a>
+    <a href="Students.html" class="nav-link"> Students</a>
+    <a href="Assesments.html" class="nav-link"> Assessments</a>
+    <a href="Analytics.html" class="nav-link"> Analytics</a>
+</div>
+</div>  
+ <div class="your-course">
+    <h2>Your Courses</h2>
+<button class="create-btn" onclick="showForm()">+Create Course</button>
+    
+</div>
+ <div id="createCourseForm">
+  <h3>Create New Course</h3>
+  <input type="text" id="courseName" placeholder="Course Name" required>
+  <textarea id="courseDescription" placeholder="Course Description"></textarea>
+  <input type="file" id="courseNotes" accept=".pdf,.doc,.docx,.ppt,.pptx">
+  <button class="btn" onclick="addCourse()">Save Course</button>
+  <a href="couses.html" class="back-home-btn">Back Home</a>
+</div>
+
+<div class="course-list">
+    <div class="course">
+        <div class="course-header">
+            <strong>Introduction to Web Development</strong>
+            <span class="status">Active</span>
+        </div>
+        <div class="details">
+            Students: 30 | Lessons: 12 | Quizzes: 4
+        </div>
+        <div class="progress-info">
+            Avg Progress: 75% | Quiz Score: 80% | Completion: 65%
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <strong>Data Science Basics</strong>
+            <span class="status">Active</span>
+        </div>
+        <div class="details">
+            Students: 18 | Lessons: 8 | Quizzes: 3
+        </div>
+        <div class="progress-info">
+            Avg Progress: 62% | Quiz Score: 70% | Completion: 50%
+        </div>
+    </div>
+</div>
+<script>
+    function showForm() {
+  document.getElementById("createCourseForm").style.display = "block";
+}
+
+function addCourse() {
+  const name = document.getElementById("courseName").value;
+  const description = document.getElementById("courseDescription").value;
+  const fileInput = document.getElementById("courseNotes");
+  
+  if (!name) {
+    alert("Please enter course name");
+    return;
+  }
+
+  let fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "No notes uploaded";
+
+  const newCourse = document.createElement("div");
+  newCourse.classList.add("course-card");
+  newCourse.innerHTML = `
+    <h4>${name}</h4>
+    <p>${description}</p>
+    <p>Notes: ${fileName}</p>
+    <p>Status: Active</p>
+    <p>Students: 0 | Lessons: 0 | Quizzes: 0</p>
+    <p>Avg Progress: 0% | Quiz Score: 0% | Completion: 0%</p>
+  `;
+  
+  document.getElementById("courseList").appendChild(newCourse);
+
+  // Notification for students
+  document.getElementById("notificationBox").innerText =
+    `📢 New course added: "${name}". Notes available: ${fileName}`;
+  document.getElementById("notificationBox").style.display = "block";
+
+  // Clear form
+  document.getElementById("courseName").value = "";
+  document.getElementById("courseDescription").value = "";
+  fileInput.value = "";
+  document.getElementById("createCourseForm").style.display = "none";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Students.css">
+</head>
+<body>
+<div class="header">
+    <!-- Navigation Links (top) -->
+<div class="nav-bar">
+     <a href="Main dashboard.html" class="nav-link"> Home</a>
+    <a href="couses.html" class="nav-link"> Courses</a>
+    <a href="Students.html" class="nav-link"> Students</a>
+    <a href="Assesments.html" class="nav-link"> Assessments</a>
+    <a href="Analytics.html" class="nav-link"> Analytics</a>
+</div>
+</div>
+<div class="sort-bar">
+    <label>Sort by Name:
+        <select id="sortName" onchange="sortByName()">
+            <option value="">-- All --</option>
+            <option value="asc">A–Z</option>
+            <option value="desc">Z–A</option>
+        </select>
+    </label>
+    <label>Sort by Course:
+        <select id="sortCourse" onchange="sortByCourse()">
+            <option value="">-- All --</option>
+            <option value="Math">React Development Fundamental</option>
+            <option value="Science"> Node.js backend Development</option>
+            <option value="History">Advanced Javascript concepts</option>
+        </select>
+    </label>
+</div>
+<div class="student-list" id="studentList">
+    <div class="student" data-name="Alice Johnson" data-course="Math">
+        <div class="student-header">
+            <strong>Alice Johnson</strong>
+            <span class="status active">Active</span>
+        </div>
+        <div>Course: React Development Fundamental</div>
+        <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+        <div>Progress: 85%</div>
+        <div class="last-active">Last active: 10:45 AM</div>
+    </div>
+    <div class="student" data-name="Bob Smith" data-course="Science">
+        <div class="student-header">
+            <strong>Bob Smith</strong>
+            <span class="status inactive">Inactive</span>
+        </div>
+        <div>Course: Node.js backend Development</div>
+        <div class="progress-bar"><div class="progress" style="width: 40%;"></div></div>
+        <div>Progress: 40%</div>
+        <div class="last-active">Last active: Yesterday</div>
+    </div>
+    <div class="student" data-name="Charlie Brown" data-course="History">
+        <div class="student-header">
+            <strong>Charlie Brown</strong>
+            <span class="status active">Active</span>
+        </div>
+        <div>Course: React Development Fundamental</div>
+        <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+        <div>Progress: 70%</div>
+        <div class="last-active">Last active: 08:15 AM</div>
+    </div>
+</div>
+<script>
+function sortByName() {
+    let order = document.getElementById("sortName").value;
+    let list = document.getElementById("studentList");
+    let students = Array.from(list.children);
+
+    students.sort((a, b) => {
+        let nameA = a.dataset.name.toLowerCase();
+        let nameB = b.dataset.name.toLowerCase();
+        if (order === "asc") return nameA.localeCompare(nameB);
+        if (order === "desc") return nameB.localeCompare(nameA);
+    });
+
+    list.innerHTML = "";
+    students.forEach(student => list.appendChild(student));
+}
+
+function sortByCourse() {
+    let course = document.getElementById("sortCourse").value;
+    let list = document.getElementById("studentList");
+    let students = Array.from(list.children);
+
+    if (course === "") {
+        students.forEach(student => student.style.display = "block");
+    } else {
+        students.forEach(student => {
+            student.style.display = student.dataset.course === course ? "block" : "none";
+        });
+    }
+}
+</script>
+
+</body>
+</html>

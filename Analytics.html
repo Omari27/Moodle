@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="Analytics.css">
+</head>
+<body>
+<div class="header">
+    <!-- Navigation Links (top) -->
+<div class="nav-bar">
+    <a href="Main dashboard.html" class="nav-link"> Home</a>
+    <a href="couses.html" class="nav-link"><i class="fa-solid fa-book"></i> Courses</a>
+    <a href="Students.html" class="nav-link"><i class="fa-solid fa-users"></i> Students</a>
+    <a href="Assesments.html" class="nav-link"><i class="fa-solid fa-clipboard-list"></i> Assessments</a>
+    <a href="Analytics.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+</div>
+</div>
+<h2>Analytics Dashboard</h2>
+<div class="grid-container">
+    <div class="chart-container">
+        <h3>Course Completion Trend (Jan - Sept)</h3>
+        <canvas id="completionTrend"></canvas>
+    </div>
+    <div class="chart-container">
+        <h3>Student Status Distribution</h3>
+        <canvas id="statusDistribution"></canvas>
+    </div>
+    <div class="chart-container">
+        <h3>Weekly Student Engagement</h3>
+        <canvas id="weeklyEngagement"></canvas>
+    </div>
+</div>
+<script>
+// 1. Line Chart - Course Completion Trend
+new Chart(document.getElementById('completionTrend'), {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept'],
+        datasets: [{
+            label: 'Completion %',
+            data: [20, 25, 40, 45, 55, 60, 70, 80, 90],
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+            fill: true,
+            tension: 0.3
+        }]
+    },
+    options: { responsive: true }
+});
+
+// 2. Pie Chart - Student Status Distribution
+new Chart(document.getElementById('statusDistribution'), {
+    type: 'pie',
+    data: {
+        labels: ['Active', 'At Risk', 'Inactive'],
+        datasets: [{
+            data: [78, 15, 7],
+            backgroundColor: ['#16a34a', '#f59e0b', '#dc2626']
+        }]
+    },
+    options: { responsive: true }
+});
+
+// 3. Bar Chart - Weekly Student Engagement
+new Chart(document.getElementById('weeklyEngagement'), {
+    type: 'bar',
+    data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+            label: 'Engagement Hours',
+            data: [5, 6, 4, 7, 8, 3, 4],
+            backgroundColor: '#3b82f6'
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

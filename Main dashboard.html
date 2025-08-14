@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard</title>
+<link rel="stylesheet" href="Main dashboard.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+}
+.header {
+    background: #2563eb;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.profile {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.profile span {
+    margin-left: 8px;
+    font-weight: bold;
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    z-index: 1;
+}
+.dropdown a {
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+}
+.dropdown a:hover {
+    background: #f0f0f0;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h2>LMS Dashboard</h2>
+    <div class="profile" onclick="toggleDropdown()">
+        <span style="gap: 5rem;"> <img src="Icons/profile pc.png"> My profile</span>
+        <div class="dropdown" id="profileDropdown">
+            <a onclick="loadProfile()">View Profile</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+</div>
+<script>
+function toggleDropdown() {
+    document.getElementById("profileDropdown").classList.toggle("show");
+}
+// Close dropdown if clicked outside
+window.onclick = function(event) {
+    if (!event.target.closest('.profile')) {
+        document.getElementById("profileDropdown").classList.remove("show");
+    }
+}
+  async function loadProfile() {
+    // Mfano wa data ya profile (offline)
+    const me = {
+      username: "John Doe",
+      email: "john@example.com",
+      role: "Instructor",
+      joinedAt: "2024-05-10",
+      profilePic: "icons/user.png"
+    };
+
+    document.getElementById('content').innerHTML = `
+      <div class="profile-card">
+        <img src="${me.profilePic}" alt="Profile Picture">
+        <h2>${me.username}</h2>
+        <p><strong>Email:</strong> ${me.email}</p>
+        <p><strong>Role:</strong> ${me.role}</p>
+        <p><strong>Joined At:</strong> ${me.joinedAt}</p>
+      </div>
+    `;
+  }
+</script>
+<style>
+.show {
+    display: block;
+}
+</style>   
+<div class="instructor-section">
+    <img src="Icons/people icon.jpg" class="link-icon">
+    <div class="instructor-text">
+        <h2>Instructor Dashboard</h2>
+        <p>Manage your courses and manage the student progress</p>
+    </div>
+</div>
+            <!--Tabs-->
+  <h2> &#128214; Quick Links</h2>
+<div class="nav-section">
+    <a href="couses.html" class="nav-card">
+        <img src="Icons/courses.png" class="link-icon">
+        <h3>Courses</h3>
+    </a>
+    <a href="Students.html" class="nav-card">
+       <img src="Icons/people icon.png" class="link-icon">
+        <h3>Students</h3>
+    </a>
+    <a href="Assesments.html" class="nav-card">
+       <img src="Icons/assesments icon.jpg" class="link-icon">
+        <h3>Assessments</h3>
+    </a>
+    <a href="Analytics.html" class="nav-card">
+    <img src="Icons/analytics icon.png" class="link-icon">
+        <h3>Analytics</h3>
+    </a>
+</div>
+
+        <!--Quick statiscs-->
+            <h3>Overviews</h3>
+<div class="overview-container">
+    <div class="card">
+        <h3><img src="Icons/courses.png" class="link-icon"> Courses</h3>
+        <p id="totalCourses">0</p>
+    </div>
+    <div class="card">
+        <h3><img src="Icons/people icon.png" class="link-icon"> Students</h3>
+        <p id="totalStudents">0</p>
+    </div>
+    <div class="card">
+        <h3><img src="Icons/avg progress.png" class="link-icon"> Avg Progress</h3>
+        <p id="avgProgress">0%</p>
+    </div>
+    <div class="card">
+        <h3><img src="Icons/active-icon.png" class="link-icon"> Active</h3>
+        <p id="activeLearners">0</p>
+    </div>
+    <div class="card">
+        <h3><img src="Icons/completion-icon.png" class="link-icon"> Completion</h3>
+        <p id="completionRate">0%</p>
+    </div>
+    <div class="card">
+        <h3><img src="Icons/rates icon.png" class="link-icon"> Rating</h3>
+        <p id="avgRating">0</p>
+    </div>
+</div>
+        
+
+<h2>Alerts & Notifications</h2>
+
+<div id="notificationList">
+  <div class="notification-card">
+    <strong>&#128226; 5 Students haven't been active in React Development 
+        Fundamental for 3 days:</strong> <p> React Development Fundamental</p>
+    <br><small>2 hours ago</small>
+    <br><button class="btn" onclick="viewDetails(1)">View Details</button>
+  </div>
+
+  <div class="notification-card">
+    <strong>&#128226; Quizes submission  approaching for JavaScript Concepts:</strong>
+    <p>Advanced JavaScript Concepts</p> 
+    <br><small>1 day ago</small>
+    <br><button class="btn" onclick="viewDetails(2)">View Details</button>
+  </div>
+</div>
+
+<div id="detailsPanel">
+  <h3>Notification Details</h3>
+  <p id="detailsContent"></p>
+  <button class="btn back-btn" onclick="goBack()">Back to Notifications</button>
+</div>
+        <script src="Main dashboard.js">
+
+        </script>
+</body>
+</html>
